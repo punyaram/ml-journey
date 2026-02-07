@@ -1,3 +1,4 @@
+##MY INITIAL APPROACH-->
 import math
 import csv
 def load_data(file):
@@ -20,7 +21,16 @@ def train(x,y,w,b,lr,epochs):
         db=(1/n)*sum(y_pred[i]-y[i] for i in range(n))
         w=w-lr*dw
         b=b-lr*db
-    return w,b
+    return w,b,y_pred
 def pred_prob(hours,w,b):
-    sigmoid(w*hours+b)
-def find_hours_for_95()
+    return sigmoid(w*hours+b)
+logsum=0
+def find_hours_for_95(y_pred):
+    for yi in y_pred:
+        logsum+=math.log(yi,2)
+        if(logsum>=0.95):
+            return y_pred
+        
+x,y,=load_data("E:/academics/coursework/machine learning/study_hours.csv")
+w,b,y_pred=train(x,y,0,0,0.01,3000)
+print(find_hours_for_95(y_pred))
